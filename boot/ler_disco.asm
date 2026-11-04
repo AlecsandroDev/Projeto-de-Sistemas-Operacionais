@@ -26,3 +26,21 @@ ler_disco:
     cmp al, ah ; comparar se foi lida a quantidade de setores desejada
     jne erro_setor ; JNE (se não for igual, pula para tratamento)
     popa ; se não houve erro, desempilha e encerra
+    ret
+
+erro_disco:
+    mov bx, MENSAGEM_ERRO_DISCO
+    call imprime
+    call imprime_quebra
+    mov dh, ah ; AH contém o código de erro
+    call imprime_hexa ; imprime o código de erro na tela
+    jmp loop_disco
+
+erro_setor:
+    mov bx, MENSAGEM_ERRO_SETOR
+    call_imprime
+
+loop_disco: jmp $
+
+MENSAGEM_ERRO_DISCO: db "Erro na leitura", 0
+MENSAGEM_ERRO_SETOR: db "Quantidade incorreta de setores lidos", 0
