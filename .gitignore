@@ -1,1 +1,7 @@
-/.bin
+# Binários compilados
+*.bin
+
+# Arquivos de sistema e temporários
+.DS_Store
+*.swp
+*~
