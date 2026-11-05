@@ -22,8 +22,8 @@ ler_disco:
     ; se houve erro, o carry bit em FLAGS será setado para 1
     jc erro_disco ; pula para o tramtamento do erro_disco
 
-    pop dx; desempilhamos DX
-    cmp al, ah ; comparar se foi lida a quantidade de setores desejada
+    pop dx ; desempilhamos DX
+    cmp al, dh ; comparar se foi lida a quantidade de setores desejada
     jne erro_setor ; JNE (se não for igual, pula para tratamento)
     popa ; se não houve erro, desempilha e encerra
     ret
@@ -38,7 +38,7 @@ erro_disco:
 
 erro_setor:
     mov bx, MENSAGEM_ERRO_SETOR
-    call_imprime
+    call imprime
 
 loop_disco: jmp $
 
